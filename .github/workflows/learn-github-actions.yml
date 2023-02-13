@@ -28,6 +28,6 @@ jobs:
           path: another
       - run: pwd
       - run: ls -l
-      - run: ls -l {{ github.workspace }}/main
-      - run: ls -l {{ github.workspace }}/another
+      - run: ls -l ${{ github.workspace }}/main
+      - run: ls -l ${{ github.workspace }}/another
       
