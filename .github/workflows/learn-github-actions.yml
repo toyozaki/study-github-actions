@@ -30,4 +30,7 @@ jobs:
       - run: ls -l
       - run: ls -l ${{ github.workspace }}/main
       - run: ls -l ${{ github.workspace }}/another
+      - run: cd ${{ github.workspace }}/main
+      - run: pwd
+      - run: git log --oneline -n 10
       
