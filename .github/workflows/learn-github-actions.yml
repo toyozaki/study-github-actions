@@ -5,10 +5,29 @@ jobs:
   check-bats-version:
     runs-on: ubuntu-latest
     steps:
+      - run: pwd
+      - run: ls -l
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: '14'
       - run: npm install -g bats
       - run: bats -v
-      - run: echo $GITHUB_WORKSPACE
+      
+  clone-another-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - run: pwd
+      - run: ls -l
+      - uses: actions/checkout@3
+        with:
+          path: main
+      - uses: actions/checkout@3
+        with:
+          repository: toyozaki/nextjs-template
+          path: another
+      - run: pwd
+      - run: ls -l
+      - run: ls -l {{ github.workspace }}/main
+      - run: ls -l {{ github.workspace }}/another
+      
