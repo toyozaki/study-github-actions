@@ -1,0 +1,27 @@
+name: upload-artifact
+on: [push]
+jobs:
+  put-output-log:
+    name: Save output
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create output.log
+        shell: bash
+        run: |
+          expr 1 + 1 > output.log
+      
+      - name: Upload output.log
+        uses: actions/upload-artict@v3
+        with:
+          name: output-log-file
+          path: output.log
+  
+  get-output-log:
+    name: Get output from artifacats
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download output.log
+        uses: actions/download-artifacts@v3
+        with:
+          name: output-log-file
+      
