@@ -108,6 +108,7 @@ jobs:
           echo ${{ fromJSON(needs.prepare-json.outputs.matrix) }}
           echo ${{ fromJSON(needs.prepare-json.outputs.sample-json) }}
           echo $hashFiles1
+          ls -l
           echo $hashFiles2
         env:
           # if the types do not match, GitHub casts the type to a string
