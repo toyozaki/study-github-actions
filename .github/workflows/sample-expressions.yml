@@ -22,7 +22,7 @@ jobs:
           myInt: ${{ 7 }}
           myFloat: ${{ 7.7 }}
           myHex: ${{ 0x77 }}
-          myExponential: ${ -2.99e-2 }}
+          myExponential: ${{ -2.99e-2 }}
           myString: This is a string
           myStringInBraces: ${{ 'It''s open source!' }}
           # myErrStringInBraces: ${{ "It's open source!" }}
