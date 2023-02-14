@@ -63,6 +63,6 @@ jobs:
           expr2: ${{ true == 1 }}
           expr3: ${{ false == 0 }}
           expr4: ${{ '' == 0 }}
-          expr5: ${{ [] == NaN }}
-          expr6: ${{ {} == NaN }}
+          expr5: ${{ toJSON('[]') == NaN }}
+          expr6: ${{ toJSON('{}') == NaN }}
           expr7: ${{ NaN != NaN }}
