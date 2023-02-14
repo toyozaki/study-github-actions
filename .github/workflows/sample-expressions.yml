@@ -112,7 +112,7 @@ jobs:
           echo ${{ fromJSON(needs.prepare-json.outputs.sample-json) }}
           echo $hashFiles1
           echo $hashFiles2
-          ls -l
+          ls -la
         env:
           # if the types do not match, GitHub casts the type to a string
           # null => ''
