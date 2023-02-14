@@ -9,8 +9,8 @@ jobs:
       sample-json: ${{ steps.sample-json.outputs.json }}
       sample-array: ${{ steps.sample-array.outputs.array }}
     steps:
-      - id: set-matrics
-        run: echo "matrix={\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}" >> $GITHUB_OUTPUT
+      - id: set-matrix
+        run: echo "matrics={\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}" >> $GITHUB_OUTPUT
       - id: sample-json
         run: echo "json={\"foo\":\"bar\"}" >> $GITHUB_OUTPUT
       - id: sample-array
@@ -110,12 +110,12 @@ jobs:
           contains2: ${{ contains(toJSON('[1, 2, 3]'), 1) }}
           contains3: ${{ contains(fromJSON('["push", "pull_request"]'), github.event_name) }}
           startsWith1: ${{ startsWith('Hello world!', 'he') }}
-          endsWith1: ${{ endsWith('Hello world!', 'd') }}
+          endsWith1: ${{ endsWith('Hello world!', 'd!') }}
           format1: ${{ format('Hello {0}, {1} and {2}', 'a', 'b', 'c') }}
           join1: ${{ join(needs.prepare-json.outputs.sample-array) }}
           join2: ${{ join(needs.prepare-json.outputs.sample-array, '/') }}
           toJSON1: ${{ toJSON(needs.prepare-json.outputs) }}
-          # fromJSON1: ${{ fromJSON(needs.prepare-json.outputs.matrix) }}
-          # fromJSON2: ${{ fromJSON(needs.prepare-json.outputs.sample-json) }}
+          fromJSON1: ${{ fromJSON(needs.prepare-json.outputs.matrix) }}
+          fromJSON2: ${{ fromJSON(needs.prepare-json.outputs.sample-json) }}
           hashFiles1: ${{ hashFiles('./index.html') }}
           hashFiles2: ${{ hashFiles('./github/workflows/sample-expressions.yml') }}
