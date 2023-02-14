@@ -97,7 +97,6 @@ jobs:
           echo $startsWith1
           echo $endsWith1
           echo $format1
-          echo $format2
           echo $join1
           echo $join2
           echo $toJSON1
@@ -113,7 +112,6 @@ jobs:
           startsWith1: ${{ startsWith('Hello world!', 'he') }}
           endsWith1: ${{ endsWith('Hello world!', 'd') }}
           format1: ${{ format('Hello {0}, {1} and {2}', 'a', 'b', 'c') }}
-          format2: ${{ format('{"a"{0} "a"}', ':') }}
           join1: ${{ join(needs.prepare-json.outputs.sample-array) }}
           join2: ${{ join(needs.prepare-json.outputs.sample-array, '/') }}
           toJSON1: ${{ toJSON(needs.prepare-json.outputs) }}
