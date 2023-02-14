@@ -71,4 +71,4 @@ jobs:
           expr7: ${{ NaN != NaN }}
           expr8: ${{ 'a' == 'A' }}
           expr9: ${{ toJSON('[1]') == toJSON('[1]') }}
-          expr10: ${{ toJSON('{"a"\: 1}') == toJSON('{"a": 1}') }}
+          expr10: ${{ toJSON('{"a": 1}') == toJSON('{"a": 1}') }}
