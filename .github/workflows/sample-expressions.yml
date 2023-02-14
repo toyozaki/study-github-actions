@@ -26,3 +26,43 @@ jobs:
           myString: This is a string
           myStringInBraces: ${{ 'It''s open source!' }}
           # myErrStringInBraces: ${{ "It's open source!" }}
+
+      - name: operators
+        run: |
+          echo $expr1
+          echo $expr2
+          echo $expr3
+          echo $expr4
+          echo $expr5
+          echo $expr6
+          echo $expr7
+          echo $expr8
+          echo $expr9
+        env:
+          expr1: ${{ !false }}
+          expr2: ${{ 2 < 1 }}
+          expr3: ${{ 1 > 2 }}
+          expr4: ${{ 1 <= 1 }}
+          expr5: ${{ 2 >= 2 }}
+          expr6: ${{ 'a' == 'a' }}
+          expr7: ${{ 'a' != 'b' }}
+          expr8: ${{ true && true }}
+          expr9: ${{ true || false }}
+
+      - name: loose equality comparisons
+        run: |
+          echo $expr1
+          echo $expr2
+          echo $expr3
+          echo $expr4
+          echo $expr5
+          echo $expr6
+          echo $expr7
+        env:
+          expr1: ${{ null == 0}}
+          expr2: ${{ true == 1 }}
+          expr3: ${{ false == 0 }}
+          expr4: ${{ '' == 0 }}
+          expr5: ${{ [] == NaN }}
+          expr6: ${{ {} == NaN }}
+          expr7: ${{ NaN != NaN }}
