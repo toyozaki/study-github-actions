@@ -15,7 +15,7 @@ jobs:
           echo $myExponential
           echo $myString
           echo $myStringInBraces
-          echo $myErrStringInBraces
+          # echo $myErrStringInBraces
         env:
           myNull: {{ null }}
           myBoolean: {{ true }}
@@ -25,4 +25,4 @@ jobs:
           myExponential: { -2.99e-2 }}
           myString: This is a string
           myStringInBraces: ${{ 'It's open source!' }}
-          myErrStringInBraces: ${{ "It's open source!" }}
+          # myErrStringInBraces: ${{ "It's open source!" }}
