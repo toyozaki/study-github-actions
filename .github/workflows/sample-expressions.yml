@@ -1,9 +1,9 @@
 name: study-github-action-expressions
-run-name: {{ github.actor }} is studying github-action expressions
+run-name: ${{ github.actor }} is studying github-action expressions
 on: [push]
 jobs:
   sample-expressions:
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: literals
         run: |
@@ -15,14 +15,14 @@ jobs:
           echo $myExponential
           echo $myString
           echo $myStringInBraces
-          # echo $myErrStringInBraces
+          echo $myErrStringInBraces
         env:
-          myNull: {{ null }}
-          myBoolean: {{ true }}
-          myInt: {{ 7 }}
-          myFloat: {{ 7.7 }}
-          myHex: {{ 0x77 }}
-          myExponential: { -2.99e-2 }}
+          myNull: ${{ null }}
+          myBoolean: ${{ true }}
+          myInt: ${{ 7 }}
+          myFloat: ${{ 7.7 }}
+          myHex: ${{ 0x77 }}
+          myExponential: ${ -2.99e-2 }}
           myString: This is a string
-          myStringInBraces: ${{ 'It's open source!' }}
-          # myErrStringInBraces: ${{ "It's open source!" }}
+          myStringInBraces: ${{ 'It''s open source!' }}
+          myErrStringInBraces: ${{ "It's open source!" }}
