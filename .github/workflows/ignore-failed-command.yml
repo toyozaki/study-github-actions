@@ -1,0 +1,16 @@
+name: ignore-failed-command
+run-name: Ignore failed command
+on: [push]
+jobs:
+  ignore-failed-command:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test 1
+        run: |
+          which hoge || exit 0;
+          echo "Success"
+
+      - name: test 2
+        run: |
+          which hoge || :
+          echo "Success"
