@@ -20,6 +20,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: prepare-json
     steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
       - name: literals
         run: |
           echo $myNull
@@ -108,8 +111,8 @@ jobs:
           echo ${{ fromJSON(needs.prepare-json.outputs.matrix) }}
           echo ${{ fromJSON(needs.prepare-json.outputs.sample-json) }}
           echo $hashFiles1
-          ls -l
           echo $hashFiles2
+          ls -l
         env:
           # if the types do not match, GitHub casts the type to a string
           # null => ''
