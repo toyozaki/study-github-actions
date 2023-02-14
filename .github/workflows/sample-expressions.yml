@@ -58,6 +58,9 @@ jobs:
           echo $expr5
           echo $expr6
           echo $expr7
+          echo $expr8
+          echo $expr9
+          echo $expr10
         env:
           expr1: ${{ null == 0}}
           expr2: ${{ true == 1 }}
@@ -66,3 +69,6 @@ jobs:
           expr5: ${{ toJSON('[]') != NaN }}
           expr6: ${{ toJSON('{}') != NaN }}
           expr7: ${{ NaN != NaN }}
+          expr8: ${{ 'a' == 'A' }}
+          expr9: ${{ toJSON('[]') != toJSON('[]') }}
+          expr10: ${{ toJSON('{}') != toJSON('{}') }}
