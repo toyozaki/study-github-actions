@@ -19,6 +19,7 @@ jobs:
   get-output-log:
     name: Get output from artifacats
     runs-on: ubuntu-latest
+    needs: put-output-log
     steps:
       - name: Download output.log
         uses: actions/download-artifact@v3
