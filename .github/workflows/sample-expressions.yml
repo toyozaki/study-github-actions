@@ -115,7 +115,7 @@ jobs:
           join1: ${{ join(needs.prepare-json.outputs.sample-array) }}
           join2: ${{ join(needs.prepare-json.outputs.sample-array, '/') }}
           toJSON1: ${{ toJSON(needs.prepare-json.outputs) }}
-          fromJSON1: ${{ fromJSON(needs.prepare-json.outputs.matrix) }}
-          fromJSON2: ${{ fromJSON(needs.prepare-json.outputs.sample-json) }}
+          # fromJSON1: ${{ fromJSON(needs.prepare-json.outputs.matrix) }}
+          # fromJSON2: ${{ fromJSON(needs.prepare-json.outputs.sample-json) }}
           hashFiles1: ${{ hashFiles('./index.html') }}
           hashFiles2: ${{ hashFiles('./github/workflows/sample-expressions.yml') }}
