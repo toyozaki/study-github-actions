@@ -82,12 +82,12 @@ jobs:
           expr2: ${{ true == 1 }}
           expr3: ${{ false == 0 }}
           expr4: ${{ '' == 0 }}
-          expr5: ${{ toJSON('[]') != NaN }}
-          expr6: ${{ toJSON('{}') != NaN }}
+          expr5: ${{ fromJSON('[]') != NaN }}
+          expr6: ${{ fromJSON('{}') != NaN }}
           expr7: ${{ NaN != NaN }}
           expr8: ${{ 'a' == 'A' }}
-          expr9: ${{ toJSON('[1]') == toJSON('[1]') }}
-          expr10: ${{ toJSON('{}') == toJSON('{}') }}
+          expr9: ${{ fromJSON('[1]') == fromJSON('[1]') }}
+          expr10: ${{ fromJSON('{}') == fromJSON('{}') }}
 
       - name: built-in functions
         run: |
@@ -115,7 +115,8 @@ jobs:
           join1: ${{ join(needs.prepare-json.outputs.sample-array) }}
           join2: ${{ join(needs.prepare-json.outputs.sample-array, '/') }}
           toJSON1: ${{ toJSON(needs.prepare-json.outputs) }}
+          # These code below occur an error because their types are object
           # fromJSON1: ${{ fromJSON(needs.prepare-json.outputs.matrix) }}
           # fromJSON2: ${{ fromJSON(needs.prepare-json.outputs.sample-json) }}
           hashFiles1: ${{ hashFiles('./index.html') }}
-          hashFiles2: ${{ hashFiles('./github/workflows/sample-expressions.yml') }}
+          hashFiles2: ${{ hashFiles('./.github/workflows/sample-expressions.yml') }}
