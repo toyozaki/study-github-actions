@@ -86,8 +86,6 @@ jobs:
           expr9: ${{ toJSON('[1]') == toJSON('[1]') }}
           expr10: ${{ toJSON('{}') == toJSON('{}') }}
 
-      - name: job1
-
       - name: built-in functions
         run: |
           echo $contain1
