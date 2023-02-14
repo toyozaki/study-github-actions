@@ -1,4 +1,4 @@
-name: Study github-action expressions
+name: study-github-action-expressions
 run-name: {{ github.actor }} is studying github-action expressions
 on: [push]
 jobs:
