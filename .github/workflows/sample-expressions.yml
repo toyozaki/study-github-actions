@@ -5,12 +5,12 @@ jobs:
   prepare-json:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrics }}
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
       sample-json: ${{ steps.sample-json.outputs.json }}
       sample-array: ${{ steps.sample-array.outputs.array }}
     steps:
       - id: set-matrix
-        run: echo "matrics={\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}" >> $GITHUB_OUTPUT
+        run: echo "matrix={\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}" >> $GITHUB_OUTPUT
       - id: sample-json
         run: echo "json={\"foo\":\"bar\"}" >> $GITHUB_OUTPUT
       - id: sample-array
