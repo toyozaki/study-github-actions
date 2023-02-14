@@ -7,11 +7,14 @@ jobs:
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrics }}
       sample-json: ${{ steps.sample-json.outputs.json }}
+      sample-array: ${{ steps.sample-array.outputs.array }}
     steps:
       - id: set-matrics
         run: echo "matrix={\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}" >> $GITHUB_OUTPUT
       - id: sample-json
-        run: echo "json={\"foo\":\"bar\"}"
+        run: echo "json={\"foo\":\"bar\"}" >> $GITHUB_OUTPUT
+      - id: sample-array
+        run: echo "array=[1, 2, 3]" >> $GITHUB_OUTPUT
 
   sample-expressions:
     runs-on: ubuntu-latest
@@ -111,8 +114,8 @@ jobs:
           endsWith1: ${{ endsWith('Hello world!', 'd') }}
           format1: ${{ format('Hello {0}, {1} and {2}', 'a', 'b', 'c') }}
           format2: ${{ format('{"a"{0} "a"}', ':') }}
-          join1: ${{ join([1, 2, 3]) }}
-          join2: ${{ join([1, 2, 3], '/') }}
+          join1: ${{ join(needs.prepare-json.outputs.sample-array) }}
+          join2: ${{ join(needs.prepare-json.outputs.sample-array, '/') }}
           toJSON1: ${{ toJSON(needs.prepare-json.outputs) }}
           fromJSON1: ${{ fromJSON(needs.prepare-json.outputs.matrix) }}
           fromJSON2: ${{ fromJSON(needs.prepare-json.outputs.sample-json) }}
