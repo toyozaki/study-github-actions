@@ -100,8 +100,8 @@ jobs:
           echo $join1
           echo $join2
           echo $toJSON1
-          echo $fromJSON1
-          echo $fromJSON2
+          echo ${{ fromJSON(needs.prepare-json.outputs.matrix) }}
+          echo ${{ fromJSON(needs.prepare-json.outputs.sample-json) }}
           echo $hashFiles1
           echo $hashFiles2
         env:
