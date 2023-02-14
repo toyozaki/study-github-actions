@@ -2,8 +2,20 @@ name: study-github-action-expressions
 run-name: ${{ github.actor }} is studying github-action expressions
 on: [push]
 jobs:
+  prepare-json:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrics }}
+      sample-json: $ {{ steps.sample-json.outputs.json }}
+    steps:
+      - id: set-matrics
+        run: echo "matrix={\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}" >> $GITHUB_OUTPUT
+      - id: sample-json
+        run: echo "json={\"foo\":\"bar\"}"
+
   sample-expressions:
     runs-on: ubuntu-latest
+    needs: prepare-json
     steps:
       - name: literals
         run: |
@@ -62,6 +74,7 @@ jobs:
           echo $expr9
           echo $expr10
         env:
+          # If the types do not match, GitHub casts the type to a number or NaN.
           expr1: ${{ null == 0}}
           expr2: ${{ true == 1 }}
           expr3: ${{ false == 0 }}
@@ -72,3 +85,40 @@ jobs:
           expr8: ${{ 'a' == 'A' }}
           expr9: ${{ toJSON('[1]') == toJSON('[1]') }}
           expr10: ${{ toJSON('{}') == toJSON('{}') }}
+
+      - name: job1
+
+      - name: built-in functions
+        run: |
+          echo $contain1
+          echo $contain2
+          echo $contain3
+          echo $startWith1
+          echo $endWith1
+          echo $format1
+          echo $format2
+          echo $join1
+          echo $join2
+          echo $join3
+          echo $toJSON1
+          echo $fromJSON1
+          echo $fromJSON2
+          echo $hashFile1
+          echo $hashFile2
+        env:
+          # if the types do not match, GitHub casts the type to a string
+          contains1: contains("abc", "A")
+          contains2: contains(toJSON('[1, 2, 3]'), 1)
+          contains3: contains(fromJSON('["push", "pull_request"]'), github.event_name)
+          startWith1: startsWith('Hello world!', 'he')
+          endWith1: endWith("Hello world!", "d!")
+          format1: format('Hello {0}, {1} and {2}', 'a', 'b', 'c')
+          format2: format('{"a"{0} "a"}', ':')
+          join1: join([1, 2, 3], '/')
+          join2: join('[1, 2, 3]')
+          join3: join([1, 2, 3], '/')
+          toJSON1: toJSON(needs.prepare-json.outputs.matrics)
+          fromJSON1: fromJSON(needs.prepare-json.outputs.matrics)
+          fromJSON2: fromJSON(needs.prepare-json.outputs.sample-json)
+          hashFile1: hashFile("./index.html")
+          hashFile2: hashFile("./github/workflows/sample-expressions.yml")
