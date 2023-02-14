@@ -126,4 +126,4 @@ jobs:
           # fromJSON1: ${{ fromJSON(needs.prepare-json.outputs.matrix) }}
           # fromJSON2: ${{ fromJSON(needs.prepare-json.outputs.sample-json) }}
           hashFiles1: ${{ hashFiles('**/index.html') }}
-          hashFiles2: ${{ hashFiles('**/README.md') }}
+          hashFiles2: ${{ hashFiles('README.md') }}
