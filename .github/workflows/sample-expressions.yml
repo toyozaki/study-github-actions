@@ -78,6 +78,11 @@ jobs:
           echo $expr10
         env:
           # If the types do not match, GitHub casts the type to a number or NaN.
+          # null => 0
+          # true => 1
+          # false => 0
+          # array => NaN
+          # object => NaN
           expr1: ${{ null == 0}}
           expr2: ${{ true == 1 }}
           expr3: ${{ false == 0 }}
@@ -86,8 +91,8 @@ jobs:
           expr6: ${{ fromJSON('{}') != NaN }}
           expr7: ${{ NaN != NaN }}
           expr8: ${{ 'a' == 'A' }}
-          expr9: ${{ fromJSON('[1]') == fromJSON('[1]') }}
-          expr10: ${{ fromJSON('{}') == fromJSON('{}') }}
+          expr9: ${{ fromJSON('[1]') != fromJSON('[1]') }}
+          expr10: ${{ fromJSON('{}') != fromJSON('{}') }}
 
       - name: built-in functions
         run: |
@@ -106,6 +111,8 @@ jobs:
           echo $hashFiles2
         env:
           # if the types do not match, GitHub casts the type to a string
+          # null => ''
+          # boolean => 'true', 'false'
           contains1: ${{ contains('abc', 'A') }}
           contains2: ${{ contains(toJSON('[1, 2, 3]'), 1) }}
           contains3: ${{ contains(fromJSON('["push", "pull_request"]'), github.event_name) }}
@@ -118,5 +125,5 @@ jobs:
           # These code below occur an error because their types are object
           # fromJSON1: ${{ fromJSON(needs.prepare-json.outputs.matrix) }}
           # fromJSON2: ${{ fromJSON(needs.prepare-json.outputs.sample-json) }}
-          hashFiles1: ${{ hashFiles('./index.html') }}
-          hashFiles2: ${{ hashFiles('./.github/workflows/sample-expressions.yml') }}
+          hashFiles1: ${{ hashFiles('**/index.html') }}
+          hashFiles2: ${{ hashFiles('**/sample-expressions.yml') }}
