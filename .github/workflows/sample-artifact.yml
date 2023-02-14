@@ -11,7 +11,7 @@ jobs:
           expr 1 + 1 > output.log
       
       - name: Upload output.log
-        uses: actions/upload-artict@v3
+        uses: actions/upload-artifact@v3
         with:
           name: output-log-file
           path: output.log
@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download output.log
-        uses: actions/download-artifacts@v3
+        uses: actions/download-artifact@v3
         with:
           name: output-log-file
       
