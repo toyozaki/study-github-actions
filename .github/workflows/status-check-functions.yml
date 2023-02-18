@@ -1,0 +1,27 @@
+name: Test status check functions
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Failing step
+        id: demo
+        run: exit 1
+        
+      - name: The job has failed
+        if: ${{ failure() }}
+        run: echo "The job before has failed"
+        
+      - name: The job has successed
+        if: ${{ success() }}
+        run: echo "The job before has successed"
+        
+      - name: This job always execute
+        if: ${{ always() }}
+        run: echo "This job always execute"
+        
+      - name: The job has failed
+        if: ${{ failure() }}
+        run: echo "test"
+        
