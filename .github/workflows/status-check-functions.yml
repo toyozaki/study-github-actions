@@ -2,26 +2,32 @@ name: Test status check functions
 on: push
 
 jobs:
-  test:
+  test-1:
     runs-on: ubuntu-latest
     steps:
+      - name: This step will be executed
+        run: echo "This step will be executed"
+        
       - name: Failing step
         id: demo
         run: exit 1
         
-      - name: The job has failed
-        if: ${{ failure() }}
-        run: echo "The job before has failed"
+      - name: The prev job has failed
+        if: ${{ failure() && steps.id.conclusion == 'failure' }}
+        run: echo "The prev job has failed"
         
-      - name: The job has successed
+      - name: This step won't be executed
         if: ${{ success() }}
-        run: echo "The job before has successed"
+        run: echo "This step won't be executed"
         
-      - name: This job always execute
+      - name: This step will always be executed
         if: ${{ always() }}
-        run: echo "This job always execute"
-        
-      - name: The job has failed
+        run: echo "This step will always be executed"
+
+  test-2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Any job has failed
         if: ${{ failure() }}
-        run: echo "test"
+        run: echo "Any job has failed"
         
