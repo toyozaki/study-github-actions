@@ -13,7 +13,7 @@ jobs:
         run: exit 1
         
       - name: The prev job has failed
-        if: ${{ failure() && steps.id.conclusion == 'failure' }}
+        if: ${{ failure() && steps.demo.id.conclusion == 'failure' }}
         run: echo "The prev job has failed"
         
       - name: This step won't be executed
