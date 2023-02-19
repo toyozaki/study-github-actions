@@ -2,7 +2,7 @@ on:
   workflow_dispatch:
 env:
   env_var: ${{ vars.ENV_CONTEXT_VAR }}
-  
+
 jobs:
   display-variables:
     name: ${{ vars.JOB_NAME }}
@@ -16,7 +16,7 @@ jobs:
           echo "organization variable(no value): ${{ vars.ORGANIZATION_VAR }}"
           echo "overridden variable: ${{ vars.OVERRIDE_VAR }}"
           echo "variable from shell environment: $env_var"
-      
+
       - name: ${{ vars.HELLO_WORLD_STEP }}
         if: ${{ vars.HELLO_WORLD_ENABLED == 'true' }}
         uses: actions/hello-world-javascript-action@main
