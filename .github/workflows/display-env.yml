@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Use variables
         run: |
-          echp "repository variable: ${{ vars.RESPOSITORY_VAR }}"
+          echo "repository variable: ${{ vars.RESPOSITORY_VAR }}"
           echo "organization variable(no value): ${{ vars.ORGANIZATION_VAR }}"
           echo "overridden variable: ${{ vars.OVERRIDE_VAR }}"
           echo "variable from shell environment: $env_var"
