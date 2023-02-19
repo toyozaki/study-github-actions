@@ -1,6 +1,7 @@
 name: upload-artifact
 run-name: Upload-artifact triggered by ${{ github.actor }}
-on: [push]
+# on: [push]
+on: workflow_dispatch
 jobs:
   put-output-log:
     name: Save output
@@ -10,13 +11,13 @@ jobs:
         shell: bash
         run: |
           expr 1 + 1 > output.log
-      
+
       - name: Upload output.log
         uses: actions/upload-artifact@v3
         with:
           name: output-log-file
           path: output.log
-  
+
   get-output-log:
     name: Get output from artifacats
     runs-on: ubuntu-latest
@@ -26,4 +27,3 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: output-log-file
-      

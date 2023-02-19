@@ -1,6 +1,7 @@
 name: study-github-action-expressions
 run-name: ${{ github.actor }} is studying github-action expressions
-on: [push]
+# on: [push]
+on: workflow_dispatch
 jobs:
   prepare-json:
     runs-on: ubuntu-latest

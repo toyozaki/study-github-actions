@@ -1,5 +1,6 @@
 name: Test status check functions
-on: push
+# on: push
+on: workflow_dispatch
 
 jobs:
   test-1:
@@ -7,19 +8,19 @@ jobs:
     steps:
       - name: This step will be executed
         run: echo "This step will be executed"
-        
+
       - name: Failing step
         id: demo
         run: exit 1
-        
+
       - name: The prev job has failed
         if: ${{ failure() && steps.demo.conclusion == 'failure' }}
         run: echo "The prev job has failed"
-        
+
       - name: This step won't be executed
         if: ${{ success() }}
         run: echo "This step won't be executed"
-        
+
       - name: This step will always be executed
         if: ${{ always() }}
         run: echo "This step will always be executed"
@@ -30,4 +31,3 @@ jobs:
       - name: Any job has failed
         if: ${{ failure() }}
         run: echo "Any job has failed"
-        

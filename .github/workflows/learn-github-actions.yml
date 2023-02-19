@@ -1,6 +1,7 @@
 name: learn-github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions
-on: [push]
+# on: [push]
+on: workflow_dispatch
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
@@ -10,10 +11,10 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: "14"
       - run: npm install -g bats
       - run: bats -v
-      
+
   clone-another-repo:
     runs-on: ubuntu-latest
     steps:
@@ -34,4 +35,3 @@ jobs:
           cd ${{ github.workspace }}/main
           pwd
           git log --oneline -n 10
-      
