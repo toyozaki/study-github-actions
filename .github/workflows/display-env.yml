@@ -7,7 +7,7 @@ jobs:
     name: ${{ vars.JOB_NAME }}
     if: ${{ vars.USE_VARIABLES == 'true' }}
     runs-on: ${{ vars.RUNNER }}
-    environment: ${{ ENVIRONMENT_STAGE }}
+    environment: ${{ vars.ENVIRONMENT_STAGE }}
     steps:
       - name: Use variables
         run: |
