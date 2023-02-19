@@ -7,14 +7,15 @@ jobs:
     name: ${{ vars.JOB_NAME }}
     if: ${{ vars.USE_VARIABLES == 'true' }}
     runs-on: ${{ vars.RUNNER }}
-    environment: ${{ vars.ENVIRONMENT_STAGE }}
+    # environment: ${{ vars.ENVIRONMENT_STAGE }}
     steps:
       - name: Use variables
-        run: |
-          echo "repository variable: ${{ vars.REPOSITORY_VAR }}"
-          echo "organization variable(no value): ${{ vars.ORGANIZATION_VAR }}"
-          echo "overridden variable: ${{ vars.OVERRIDE_VAR }}"
-          echo "variable from shell environment: $env_var"
+        run: echo "test"
+        # run: |
+        #   echo "repository variable: ${{ vars.REPOSITORY_VAR }}"
+        #   echo "organization variable(no value): ${{ vars.ORGANIZATION_VAR }}"
+        #   echo "overridden variable: ${{ vars.OVERRIDE_VAR }}"
+        #   echo "variable from shell environment: $env_var"
 
       - name: ${{ vars.HELLO_WORLD_STEP }}
         if: ${{ vars.HELLO_WORLD_ENABLED == 'true' }}
