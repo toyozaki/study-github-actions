@@ -1,0 +1,11 @@
+name: sample-workflow-caller
+run-name: Call a reusable workflow
+on: workflow_dispatch
+
+jobs:
+  call-workflow-passing-data:
+    uses: toyozaki/my-reusable-workflows/.github/workflow/sample-reusable-workflow.yml@main
+    with:
+      your-name: potita
+    secrets:
+      your-age: 1000
