@@ -8,4 +8,4 @@ jobs:
     with:
       your-name: potita
     secrets:
-      your-age: 1000
+      your-age: '1000'
