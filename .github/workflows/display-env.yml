@@ -21,3 +21,18 @@ jobs:
         uses: actions/hello-world-javascript-action@main
         with:
           who-to-greet: ${{ vars.GREET_NAME }}
+
+  set-env-to-outputs:
+    runs-on: ubuntu-latest
+    outputs:
+      hoge: ${{ env.env_var }}
+    steps: | 
+      - run: echo "Exposing env vars"
+    
+  print-outputs:
+    runs-on: ubuntu-latest
+    env:
+      test: ${{ needs.set-env-to-outputs.outputs.hoge }}
+    steps: |
+      - run: echo $test
+      
