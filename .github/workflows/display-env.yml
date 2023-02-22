@@ -26,13 +26,13 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       hoge: ${{ env.env_var }}
-    steps: | 
+    steps: 
       - run: echo "Exposing env vars"
     
   print-outputs:
     runs-on: ubuntu-latest
     env:
       test: ${{ needs.set-env-to-outputs.outputs.hoge }}
-    steps: |
+    steps: 
       - run: echo $test
       
